@@ -4,9 +4,9 @@ LDFLAGS=-g
 LIBS =
 CC = c99
 LD = ${CC}
-OBJ = main.o
-
-all: ${OBJ}
+OBJ = main.o 
+SOBJ = src/define.o
+all: ${SOBJ} ${OBJ}
 
 .SUFFIXES:
 .SUFFIXES: .o .c
@@ -14,9 +14,12 @@ all: ${OBJ}
 .c.o:
 	${CC} ${CFLAGS} -oproj $<
 
-${BIN}: ${OBJ}
+src: ${SOBJ}
+	${LD} -o$@ ${LDFLAGS} ${SOBJ} ${LIBS}
+
+main: ${OBJ}
 	${LD} -o$@ ${LDFLAGS} ${OBJ} ${LIBS}
 
 clean:
-	rm *.o
+	rm *.o src/*.o
 
