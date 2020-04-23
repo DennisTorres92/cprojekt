@@ -1,4 +1,4 @@
-#include "src/define.h"
+#include "define.h"
 
 int main(int argv, const char** argc){
 	printf("Hello World!\n");
