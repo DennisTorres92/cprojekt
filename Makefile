@@ -12,13 +12,13 @@ all: ${OBJ}
 .SUFFIXES: .o .c
 
 .c.o:
-	${CC} ${CFLAGS} ${CPPFLAGS} -oproj $<
+	${CC} ${CFLAGS} ${CPPFLAGS} -c -o$@ $<
 
 main: ${OBJ}
-	${LD} -c$@ ${LDFLAGS} ${OBJ} ${LIBS}
+	${LD} -oprogram ${LDFLAGS} ${OBJ} ${LIBS}
 
 clean:
-	rm *.o src/*.o
+	rm *.o  src/*.o
 
-.PHONY: all clean
+.PHONY: all main clean
 
