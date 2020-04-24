@@ -6,7 +6,6 @@ LIBS =
 CC = c99
 LD = ${CC}
 OBJ = main.o src/define.o
-all: ${OBJ}
 
 .SUFFIXES:
 .SUFFIXES: .o .c
@@ -20,5 +19,5 @@ main: ${OBJ}
 clean:
 	rm *.o  src/*.o
 
-.PHONY: all main clean
+.PHONY: all clean
 
