@@ -3,7 +3,7 @@
 bool menu();
 void newdata();
 void editdata();
-void showdata();
+int8 showdata();
 data* adressbook;
 uint16 entry;
 #endif	/* DATA_H */

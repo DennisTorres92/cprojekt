@@ -31,6 +31,22 @@ bool menu(){
 	}
 }
 void newdata(){
+	entry += 1;
 	adressbook = realloc(entry*sizeof(data));
 	adressbook+entry->id = entry;
+	adressbook+entry->name = name;
+	adressbook+entry->lastname = lastname;
+}
+void editdata(){
+	int8 id = showdata();
+	adressbook+id->name = name;
+	adressbook+id->lastname = lastname;
+}
+int8 showdata(){
+	int8 i;
+	do{
+		printfdata(adressbook+i);
+		return i;
+		i++;
+	}while(i < entry);
 }
