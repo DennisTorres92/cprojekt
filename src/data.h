@@ -4,6 +4,6 @@ bool menu();
 void newdata();
 void editdata();
 int8 showdata();
-data* adressbook;
-uint16 entry;
+data* adressbook = malloc(1*sizeof(data));
+uint16 entry = 0;
 #endif	/* DATA_H */
