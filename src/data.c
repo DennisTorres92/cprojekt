@@ -1,52 +1,80 @@
+#include "define.h"
 #include "data.h"
-bool menu(){
-	printf("Adressbook: \n
-		1 - new Data\n
-		2 - edit Data\n
-		3 - show Data\n
-		4 - exit\n
-		input: ");
-	int8 inp;
-	scanf("%i", &inp);
+void init(){
+	entry = 0;
+	adressbook = malloc(1 * sizeof(data));
+}
+int8 menu(){
+	printf("Adressbook: \n1 - new Data\n2 - edit Data\n3 - show Data\n4 - exit\ninput: ");
+	int inp;
+	scanf("%d", &inp);
 	switch(inp){
 		case 1:
 			newdata();
-			return true;
+			return 1;
 			break;
 		case 2:
 			editdata();
-			return true;
+			return 2;
 			break;
 		case 3:
 			showdata();
-			return true;
+			return 3;
 			break;
 		case 4:
-			return false;
+			return 0;
 			break;
-		case default:
-			printf("Please use 1-4");
-			return true;
+		default:
+			printf("Please use 1-4\n");
+			return -1;
 			break;
 	}
+	return -1;
 }
 void newdata(){
-	entry += 1;
-	adressbook = realloc(entry*sizeof(data));
-	adressbook[entry].id = entry;
-	adressbook[entry].name = name;
-	adressbook[entry].lastname = lastname;
+	uint16 x;
+	for(uint16 i = 0; i <= entry; i++){
+		if(&adressbook[i] == NULL){
+			x = i;
+			break;
+		}else if(i == entry){
+			adressbook = realloc(adressbook, (entry + 1) * sizeof(data));
+			x = entry;
+			break;
+		}
+	}
+	adressbook[x].id = x;
+	input(x);
+	entry++;
 }
 void editdata(){
 	int8 id = showdata();
-	adressbook[id].name = name;
-	adressbook[id].lastname = lastname;
+	if(id != - 1){
+		input(id);
+	}
 }
-int8 showdata(){
-	int8 i;
-	do{
-		printfdata(adressbook[i]);
-		return i;
+int16 showdata(){
+	int8 i = 0;
+	while(i < entry){
+		printdata(&adressbook[i]);
+		//return i;
 		i++;
-	}while(i < entry);
+	}
+	printf("adressbook is clean.\n");
+	return -1;
+}
+void input(int16 id){
+	printf("name: ");
+	char name[20];
+	scanf("%s", name);
+	adressbook[id].firstname = name;
+	printf("lastname: ");
+	char lastname[30];
+	scanf("%s", lastname);
+	adressbook[id].lastname = lastname;
+	printf("[Save] ");
+	printdata(&adressbook[id]);
+}
+void printdata(struct data* data){
+		printf("DbID: %i %s, %s\n", data->id, data->lastname, data->firstname);
 }

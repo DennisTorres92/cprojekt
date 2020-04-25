@@ -2,8 +2,10 @@
 #include "data.h"
 
 int main(int argv, const char** argc){
-	while(menu()){
-	
+	init();	
+	while(menu() != 0){
+		printf("[DEBUG6] %d",entry);	
 	}
+	free(adressbook);
 	return 0;
 }

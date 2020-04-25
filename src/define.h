@@ -21,10 +21,10 @@ typedef double	float64;
 
 typedef struct data	data;
 struct data{
-	int id;
-	char[20] firstname;
-	char[30] lastname;
+	uint16 id;
+	char* firstname;
+	char* lastname;
 };
 
-void printdata(struct data* data);
+
 #endif	/*	DEFINE_H	*/

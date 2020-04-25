@@ -1,9 +1,12 @@
 #ifndef DATA_H
 #define DATA_H
-bool menu();
+void init();
+int8 menu();
 void newdata();
 void editdata();
-int8 showdata();
-data* adressbook = malloc(1*sizeof(data));
-uint16 entry = 0;
-#endif	/* DATA_H */
+int16 showdata();
+data* adressbook;
+void input(int16 id);
+void printdata(data* data);
+uint16 entry;
+#endif	/*   DATA_H   */

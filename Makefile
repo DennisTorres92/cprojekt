@@ -5,7 +5,7 @@ LDFLAGS=-g
 LIBS =
 CC = c99
 LD = ${CC}
-OBJ = main.o src/define.o src/data.o
+OBJ = main.o src/data.o
 
 .SUFFIXES:
 .SUFFIXES: .o .c
