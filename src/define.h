@@ -19,11 +19,13 @@ typedef uint64_t	uint64;
 typedef float	float32;
 typedef double	float64;
 
-typedef struct test	test;
-struct test{
-	int x;
-	int y;
-	int z;
+typedef struct data	data;
+struct data{
+	data(int id);
+	int id;
+	char[20] firstname;
+	char[30] lastname;
 };
-void printvec(struct test* printit);
+
+void printdata(struct data* data);
 #endif	/*	DEFINE_H	*/
