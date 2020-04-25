@@ -30,4 +30,7 @@ bool menu(){
 			break;
 	}
 }
-
+void newdata(){
+	adressbook = realloc(entry*sizeof(data));
+	adressbook+entry->id = entry;
+}

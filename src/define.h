@@ -21,7 +21,6 @@ typedef double	float64;
 
 typedef struct data	data;
 struct data{
-	data(int id);
 	int id;
 	char[20] firstname;
 	char[30] lastname;
