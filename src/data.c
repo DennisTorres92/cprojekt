@@ -10,7 +10,7 @@ bool menu(){
 	scanf("%i", &inp);
 	switch(inp){
 		case 1:
-			adressbook::newdata();
+			newdata();
 			return true;
 			break;
 		case 2:
