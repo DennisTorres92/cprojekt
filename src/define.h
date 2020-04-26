@@ -5,6 +5,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <string.h>
 
 typedef int8_t	int8; 
 typedef int16_t	int16;
@@ -22,9 +23,12 @@ typedef double	float64;
 typedef struct data	data;
 struct data{
 	uint16 id;
-	char* firstname;
-	char* lastname;
+	char firstname[64];
+	char lastname[64];
 };
 
-
+void ternl(char* str) {
+	size_t i = strlen(str);
+	str[i - 1] = '\0';
+}
 #endif	/*	DEFINE_H	*/

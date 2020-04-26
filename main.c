@@ -4,8 +4,7 @@
 int main(int argv, const char** argc){
 	init();	
 	while(menu() != 0){
-		printf("[DEBUG6] %d",entry);	
 	}
-	free(adressbook);
+	free(addressbook);
 	return 0;
 }
