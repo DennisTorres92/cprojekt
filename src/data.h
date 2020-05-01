@@ -1,12 +1,14 @@
 #ifndef DATA_H
 #define DATA_H
-void init();
-int8 menu();
-void newdata();
-void editdata();
-int16 showdata();
+void Init();
+void Loaddata();
+void Savedata();
+int8 Menu();
+void Newdata();
+void Editdata();
+int16 Showdata();
 data* addressbook;
-void input(size_t i);
-void printdata(data* data);
+void Input(size_t i);
+void Printdata(data* data);
 uint16 entry;
-#endif	/*   DATA_H   */
+#endif	/*   DATA_H   */ 

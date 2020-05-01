@@ -1,38 +1,76 @@
 #include "define.h"
 #include "data.h"
-void init(){
+#include <sys/types.h>
+#include <unistd.h>
+
+void Init(){
 	entry = 0;
 	addressbook = malloc(1 * sizeof(data));
+	Loaddata();
 }
-int8 menu(){
-	printf("Adressbook: \n1 - new Data\n2 - edit Data\n3 - show Data\n4 - exit\ninput: ");
+void Loaddata(){
+	FILE* file;
+	file = fopen("data", "rb");
+	if(file == NULL){
+		file = fopen("data", "wb");
+		assert(file);
+		puts("Create data file.\n");
+	}else{
+		char* line = NULL;
+		size_t len = 0;
+		ssize_t read;
+	/*	while ((read = getline(&line, &len, file) != -1)) {
+			addressbook = realloc(addressbook, (entry + 1) * sizeof(data));
+			//save to addressbook
+			//addressbook[entry].id = entry;
+			//addressbook[entry].firstname = 
+			//addressbook[entry].lastname =
+			entry++;
+		} */
+	}
+	fclose(file);
+}
+void Savedata(){
+	FILE* file;
+	file = fopen("data", "wb");
+	assert(file);
+	puts("Save data...");
+	for(int i = 0; i > entry; i++){
+		char buffer[MAXLEN];
+		fputs(	
+	}
+	fclose(file);
+}
+
+int8 Menu(){
+	puts("Addressbook: \n1 - new Data\n2 - edit Data\n3 - show Data\n4 - exit\ninput: ");
 	int inp;
 	scanf(" %d", &inp);
 	while (inp != '\n' && getchar() != '\n');
 	switch(inp){
 		case 1:
-			newdata();
+			Newdata();
 			return 1;
 			break;
 		case 2:
-			editdata();
+			Editdata();
 			return 2;
 			break;
 		case 3:
-			showdata();
+			Showdata();
 			return 3;
 			break;
 		case 4:
 			return 0;
 			break;
 		default:
-			printf("Please use 1-4\n");
+			puts("Please use 1-4\n");
 			return -1;
 			break;
 	}
 	return -1;
 }
-void newdata(){
+void Newdata(){
 	uint16 x;
 	for(uint16 i = 0; i <= entry; i++){
 		if(&addressbook[i] == NULL){
@@ -45,35 +83,44 @@ void newdata(){
 		}
 	}
 	addressbook[x].id = x;
-	input(x);
+	Input(x);
 	entry++;
 }
-void editdata(){
-	int8 id = showdata();
+void Editdata(){
+	int8 id = Showdata();
 	if(id != - 1){
-		input(id);
+		Input(id);
 	}
 }
-int16 showdata(){
+int16 Showdata(){
 	int8 i = 0;
 	while(i < entry){
-		printdata(&addressbook[i]);
+		Printdata(&addressbook[i]);
 		//return i;
 		i++;
 	}
-	printf("addressbook is clean.\n");
+	puts("addressbook is clean.\n");
 	return -1;
 }
-void input(size_t id){
+void Input(size_t id){
 	fputs("name: ", stdout);
 	fgets(addressbook[id].firstname, sizeof(addressbook[id].firstname), stdin);
-	ternl(addressbook[id].firstname);
+	Ternl(addressbook[id].firstname);
 	fputs("lastname: ", stdout);
 	fgets(addressbook[id].lastname, sizeof(addressbook[id].lastname), stdin);
-	ternl(addressbook[id].lastname);
-	printf("[Save] ");
-	printdata(&addressbook[id]);
+	Ternl(addressbook[id].lastname);
+	puts("[Save] ");
+	Printdata(&addressbook[id]);
 }
-void printdata(struct data* data){
-		printf("DbID: %i %s, %s\n", data->id, data->lastname, data->firstname);
+void Printdata(struct data* data){
+	char* str;
+	strcpy(str, "DbID: ");
+	char* id;
+	strcat(str, (char*)data->id);
+	strcat(str, " ");
+	strcat(str, data->lastname);
+	strcat(str, ", ");
+	strcat(str, data->firstname);
+	puts(str);
 }
+

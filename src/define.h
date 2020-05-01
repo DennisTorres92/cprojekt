@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
+#include <assert.h>
+#define MAXLEN 64
 
 typedef int8_t	int8; 
 typedef int16_t	int16;
@@ -23,11 +25,11 @@ typedef double	float64;
 typedef struct data	data;
 struct data{
 	uint16 id;
-	char firstname[64];
-	char lastname[64];
+	char firstname[MAXLEN];
+	char lastname[MAXLEN];
 };
 
-void ternl(char* str) {
+void Ternl(char* str){
 	size_t i = strlen(str);
 	str[i - 1] = '\0';
 }
